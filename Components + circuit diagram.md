@@ -13,7 +13,6 @@
 ### Oxygen Monitoring + Motor Control
 - **1X ESP32:** The microcontroller for oxygen monitoring and motor control.
 - **1X USB Cord:** For programming and power supply to the ESP32.
-- **1X Oxygen Sensor:** Measures oxygen levels in the compost to ensure optimal bacterial activity.
 - **1X BTS7960 Motor Driver:** Controls the motor for rotation purposes.
 - **1X DC 12V 27RPM Bringsmart Motor:** Used for aeration when oxygen levels are low.
 - **9X Double-Ended Male Connector:** Used for connecting the sensors, motor driver, and other components to the ESP32.
