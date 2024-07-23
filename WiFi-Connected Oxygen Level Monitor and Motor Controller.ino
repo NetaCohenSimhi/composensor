@@ -30,9 +30,9 @@ const int pwmChannelLPWM = 1; // PWM channel for left PWM
 
 WiFiClient client;
 
-// Generates a random number between 0 and 3 inclusive to simulate oxygen level
+// Generates a random number between 0 and 21 inclusive to simulate oxygen level
 float generateRandomOxygenLevel() {
-  return random(0, 4); 
+  return random(0, 21); 
 }
 
 void setup() {
