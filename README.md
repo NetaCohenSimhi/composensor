@@ -1,6 +1,5 @@
 # Compost Monitoring System
-
-Our compost monitoring system tracks key metrics, including temperature, oxygen levels, and humidity, to ensure optimal composting conditions.
+This project automates composting by monitoring temperature, oxygen levels, and soil moisture, uploading data to ThingSpeak. Temperature guides compost phases, while low oxygen triggers an aeration motor, and low soil moisture activates a water tap. This system efficiently maintains optimal composting conditions.
 
 ## Table of Contents
 - Compost Sensor System Overview [(link)](https://github.com/NetaCohenSimhi/composensor/blob/main/Compost%20Sensor%20System%20Overview.md)
