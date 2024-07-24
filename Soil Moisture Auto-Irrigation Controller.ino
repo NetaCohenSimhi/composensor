@@ -13,13 +13,15 @@ Ideal for automated irrigation in agricultural applications and smart gardening
 #include <ThingSpeak.h>
 #include <WiFi.h> // Include the WiFi library
 
-#define RELAY_PIN D12  // Define the relay pin as D12
-#define SOIL_SENSOR_PIN A0  // Analog pin connected to the sensor
-
 unsigned long myChannelNumber = 2591283;
 const char *myWriteAPIKey = "84QHA0LT3CZ25OK3";
-const char *ssid = "agrotech"; // Your WiFi SSID name
-const char *password = "1Afuna2gezer"; // WiFi password
+const char *ssid = "borneo-guest"; // WiFi SSID name
+const char *password = "ilovepizza"; // WiFi password
+
+#define RELAY_PIN 12  // Define the relay pin as D12
+#define SOIL_SENSOR_PIN A0  // Analog pin connected to the sensor
+#define ONBOARD_LED_PIN 2  // GPIO pin for the onboard LED
+
 int dryValue = 0;  // Calibrate this value
 int wetValue = 1023;  // Calibrate this value
 int threshold = 40;  // Threshold moisture percentage to turn the relay on
@@ -28,10 +30,9 @@ WiFiClient client;
 
 void setup() {
   pinMode(RELAY_PIN, OUTPUT);
+  pinMode(ONBOARD_LED_PIN, OUTPUT);
   Serial.begin(115200);
-  // Initialize communication with the DS18B20 sensor
-  sensors.begin();
-  
+
   WiFi.disconnect();
   delay(10);
   WiFi.begin(ssid, password);
@@ -48,35 +49,40 @@ void setup() {
   Serial.print("NodeMcu connected to wifi...");
   Serial.println(ssid);
   Serial.println();
+  
   Serial.println("Calibrating soil moisture sensor...");
   
-  //Measure dry value
-  Serial.println("Insert the sensor into dry soil and press 'd'");
-  while (Serial.read() != 'd') {
-    delay(100);
-  }
+  // Measure dry value
+  Serial.println("Insert the sensor into dry soil. Calibration will start in 5 seconds...");
+  delay(5000);  // Wait for 5 seconds before starting calibration
+  digitalWrite(ONBOARD_LED_PIN, HIGH);  // Turn on onboard LED for dry soil
+  Serial.println("Measuring dry value for 30 seconds...");
+  delay(30000);  // Wait for 30 seconds to measure the dry value
   dryValue = analogRead(SOIL_SENSOR_PIN);
+  digitalWrite(ONBOARD_LED_PIN, LOW);  // Turn off onboard LED
   Serial.print("Dry value set to: ");
   Serial.println(dryValue);
   
   // Measure wet value
-  Serial.println("Insert the sensor into wet soil and press 'w'");
-  while (Serial.read() != 'w') {
-    delay(100);
-  }
+  Serial.println("Insert the sensor into wet soil. Calibration will start in 5 seconds...");
+  delay(5000);  // Wait for 5 seconds before starting calibration
+  digitalWrite(ONBOARD_LED_PIN, HIGH);  // Turn on onboard LED for wet soil
+  Serial.println("Measuring wet value for 30 seconds...");
+  delay(30000);  // Wait for 30 seconds to measure the wet value
   wetValue = analogRead(SOIL_SENSOR_PIN);
+  digitalWrite(ONBOARD_LED_PIN, LOW);  // Turn off onboard LED
   Serial.print("Wet value set to: ");
   Serial.println(wetValue);
  
   // Give some time before starting the loop
-  delay(2000);
+  delay(15000);
 }
 
 void loop() {
-  int sensorValue = analogRead(SOIL_SENSOR_PIN); // Read the current soil moisture value from the sensor.
+  int sensorValue = analogRead(SOIL_SENSOR_PIN);
   
   // Map the sensor value to a percentage
- int moisturePercent = map(sensorValue, dryValue, wetValue, 0, 100);
+  int moisturePercent = map(sensorValue, dryValue, wetValue, 0, 100);
   
   // Ensure the percentage is within 0-100%
   moisturePercent = constrain(moisturePercent, 0, 100);
@@ -85,18 +91,13 @@ void loop() {
   Serial.print("Soil Moisture: ");
   Serial.print(moisturePercent);
   Serial.println("%");
-  
+
   // Set the values to be sent to ThingSpeak
   ThingSpeak.setField(2, moisturePercent);
 
   // Send the data to ThingSpeak
   ThingSpeak.writeFields(myChannelNumber, myWriteAPIKey);
-
-  // Print a message to the serial monitor indicating that the data has been uploaded
-  Serial.println("Uploaded to ThingSpeak server.");
-
-  delay(300000);
-
+  
   // Control the relay based on soil moisture
   if (moisturePercent < threshold) {
     digitalWrite(RELAY_PIN, LOW);  // Turn the relay on (open)
