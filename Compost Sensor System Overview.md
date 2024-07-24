@@ -29,7 +29,7 @@ Efficient soil moisture management is crucial:
 - For moisture levels <30%, a water tap is activated to boost moisture content.
 
 **Code info:** The [Soil Moisture Auto-Irrigation Controller](https://github.com/NetaCohenSimhi/composensor/blob/main/Soil%20Moisture%20Auto-Irrigation%20Controller.ino) code controls an irrigation system based on soil moisture readings.
-[full code to copy](https://github.com/NetaCohenSimhi/composensor/blob/main/Soil%20Moisture%20Auto-Irrigation%20Controller.ino) )
+[full code to copy](https://github.com/NetaCohenSimhi/composensor/blob/main/Soil%20Moisture%20Auto-Irrigation%20Controller.ino)
 
 ![Alt Text](https://media1.tenor.com/m/tloalQrDlOIAAAAC/bad-hair-day-its-the-humidity.gif)
 
