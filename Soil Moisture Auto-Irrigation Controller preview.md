@@ -77,3 +77,5 @@ void loop() {
   delay(1000);  // Wait for 1 second before taking another reading.
 }
 ```
+
+[Click to get back to the first page](https://github.com/NetaCohenSimhi/composensor/blob/main/README.md)
