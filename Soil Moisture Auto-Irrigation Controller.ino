@@ -6,17 +6,46 @@ based on the moisture level. The relay can be used to control irrigation systems
 turning them on when the soil is too dry and off when the soil has sufficient moisture.
 */
 
+#include <Arduino.h>
+#include <Wire.h>
+#include <ThingSpeak.h>
+#include <WiFi.h> // Include the WiFi library
+
 #define RELAY_PIN D12  // Define the relay pin as D12
 #define SOIL_SENSOR_PIN A0  // Analog pin connected to the sensor
 
+unsigned long myChannelNumber = 2591283;
+const char *myWriteAPIKey = "84QHA0LT3CZ25OK3";
+const char *ssid = "agrotech"; // Your WiFi SSID name
+const char *password = "1Afuna2gezer"; // WiFi password
 int dryValue = 0;  // Calibrate this value
 int wetValue = 1023;  // Calibrate this value
 int threshold = 40;  // Threshold moisture percentage to turn the relay on
 
+WiFiClient client;
+
 void setup() {
   pinMode(RELAY_PIN, OUTPUT);
   Serial.begin(115200);
+  // Initialize communication with the DS18B20 sensor
+  sensors.begin();
   
+  WiFi.disconnect();
+  delay(10);
+  WiFi.begin(ssid, password);
+  Serial.println();
+  Serial.println();
+  Serial.print("Connecting to ");
+  Serial.println(ssid);
+  ThingSpeak.begin(client);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("");
+  Serial.print("NodeMcu connected to wifi...");
+  Serial.println(ssid);
+  Serial.println();
   Serial.println("Calibrating soil moisture sensor...");
   
   //Measure dry value
@@ -42,7 +71,7 @@ void setup() {
 }
 
 void loop() {
-  int sensorValue = analogRead(SOIL_SENSOR_PIN);
+  int sensorValue = analogRead(SOIL_SENSOR_PIN); // Read the current soil moisture value from the sensor.
   
   // Map the sensor value to a percentage
  int moisturePercent = map(sensorValue, dryValue, wetValue, 0, 100);
@@ -54,6 +83,17 @@ void loop() {
   Serial.print("Soil Moisture: ");
   Serial.print(moisturePercent);
   Serial.println("%");
+  
+  // Set the values to be sent to ThingSpeak
+  ThingSpeak.setField(2, moisturePercent);
+
+  // Send the data to ThingSpeak
+  ThingSpeak.writeFields(myChannelNumber, myWriteAPIKey);
+
+  // Print a message to the serial monitor indicating that the data has been uploaded
+  Serial.println("Uploaded to ThingSpeak server.");
+
+  delay(300000);
 
   // Control the relay based on soil moisture
   if (moisturePercent < threshold) {
