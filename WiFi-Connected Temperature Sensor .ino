@@ -13,10 +13,10 @@ temperature data to ThingSpeak for remote monitoring. The data is uploaded at re
 #include <WiFi.h> // Include the WiFi library
 
 // ThingSpeak channel configuration
-unsigned long myChannelNumber = 2591283; // ThingSpeak channel number
-const char *myWriteAPIKey = "84QHA0LT3CZ25OK3"; // ThingSpeak write API key
-const char *ssid = "agrotech"; // WiFi SSID name
-const char *password = "1Afuna2gezer"; // WiFi password
+unsigned long myChannelNumber = xxxxxx;
+const char *myWriteAPIKey = "xxxxxxxxxxx";
+const char *ssid = "xxxxxxxxxxxx"; // WiFi SSID name
+const char *password = "xxxxxxxx"; // WiFi password
 
 // Specify the GPIO pin where the DS18B20 sensor is connected
 const int oneWireBus = A4;     
