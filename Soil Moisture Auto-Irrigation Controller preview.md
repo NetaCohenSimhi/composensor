@@ -16,13 +16,13 @@ This code monitors soil moisture levels and uploads the data to ThingSpeak for r
 ```
 ## ThingSpeak Configuration
 ```cpp
-unsigned long myChannelNumber = 2591283;
-const char *myWriteAPIKey = "84QHA0LT3CZ25OK3";
+unsigned long myChannelNumber = xxxxxx;
+const char *myWriteAPIKey = "xxxxxxxxxxx";
 ```
 ## WiFi Configuration
 ```cpp
-const char *ssid = "agrotech"; // Your WiFi SSID name
-const char *password = "1Afuna2gezer"; // WiFi password
+const char *ssid = "xxxxxxxxxxxx"; // WiFi SSID name
+const char *password = "xxxxxxxx"; // WiFi password
 WiFiClient client;
 ```
 ## Calibration and Threshold Settings
