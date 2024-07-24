@@ -3,7 +3,7 @@
 ### Temperature Monitoring
 - **1X ESP32:** The microcontroller for temperature monitoring.
 - **1X USB Cord:** For programming and power supply to the ESP32.
-- **1X Resistor:** Typically used with the DS18B20 temperature sensor to pull the data line high.
+- **1X 300 k Resistor:** Typically used with the DS18B20 temperature sensor to pull the data line high.
 - **1X DS18B20 Sensor:** A temperature sensor that provides precise temperature readings.
 - **8X Double-Ended Male Connector:** Used for connecting the sensors and other components to the ESP32.
 
