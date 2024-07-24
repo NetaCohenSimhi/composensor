@@ -13,10 +13,10 @@ Ideal for automated irrigation in agricultural applications and smart gardening
 #include <ThingSpeak.h>
 #include <WiFi.h> // Include the WiFi library
 
-unsigned long myChannelNumber = 2591283;
-const char *myWriteAPIKey = "84QHA0LT3CZ25OK3";
-const char *ssid = "borneo-guest"; // WiFi SSID name
-const char *password = "ilovepizza"; // WiFi password
+unsigned long myChannelNumber = xxxxxx;
+const char *myWriteAPIKey = "xxxxxxxxxxx";
+const char *ssid = "xxxxxxxxxxxx"; // WiFi SSID name
+const char *password = "xxxxxxxx"; // WiFi password
 
 #define RELAY_PIN 12  // Define the relay pin as D12
 #define SOIL_SENSOR_PIN A0  // Analog pin connected to the sensor
