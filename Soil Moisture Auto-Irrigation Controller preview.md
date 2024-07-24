@@ -1,6 +1,6 @@
 # Soil Moisture Control Code
 
-This Arduino project monitors soil moisture levels and uploads the data to ThingSpeak for remote tracking. It includes a relay module to control an irrigation system, activating it when soil moisture drops below a specified threshold. Ideal for automated irrigation in agricultural applications and smart gardening.
+This code monitors soil moisture levels and uploads the data to ThingSpeak for remote tracking. It includes a relay module to control an irrigation system, activating it when soil moisture drops below a specified threshold. Ideal for automated irrigation in agricultural applications and smart gardening.
 
 ## Include Libraries
 ```cpp
