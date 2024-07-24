@@ -60,26 +60,30 @@ void setup() {
   // Soil moisture sensor calibration
   Serial.println("Calibrating soil moisture sensor...");
   
-  // Measure dry value
-  Serial.println("Insert the sensor into dry soil and press 'd'");
-  while (Serial.read() != 'd') {
-    delay(100);
-  }
+   // Measure dry value
+  Serial.println("Insert the sensor into dry soil. Calibration will start in 5 seconds...");
+  delay(5000);  // Wait for 5 seconds before starting calibration
+  digitalWrite(ONBOARD_LED_PIN, HIGH);  // Turn on onboard LED for dry soil
+  Serial.println("Measuring dry value for 30 seconds...");
+  delay(30000);  // Wait for 30 seconds to measure the dry value
   dryValue = analogRead(SOIL_SENSOR_PIN);
+  digitalWrite(ONBOARD_LED_PIN, LOW);  // Turn off onboard LED
   Serial.print("Dry value set to: ");
   Serial.println(dryValue);
   
   // Measure wet value
-  Serial.println("Insert the sensor into wet soil and press 'w'");
-  while (Serial.read() != 'w') {
-    delay(100);
-  }
+  Serial.println("Insert the sensor into wet soil. Calibration will start in 5 seconds...");
+  delay(5000);  // Wait for 5 seconds before starting calibration
+  digitalWrite(ONBOARD_LED_PIN, HIGH);  // Turn on onboard LED for wet soil
+  Serial.println("Measuring wet value for 30 seconds...");
+  delay(30000);  // Wait for 30 seconds to measure the wet value
   wetValue = analogRead(SOIL_SENSOR_PIN);
+  digitalWrite(ONBOARD_LED_PIN, LOW);  // Turn off onboard LED
   Serial.print("Wet value set to: ");
   Serial.println(wetValue);
  
   // Give some time before starting the loop
-  delay(2000);
+  delay(15000);
 }
 ```
 ## Loop Function
