@@ -13,10 +13,10 @@ and uploads the data to the ThingSpeak platform for monitoring.
 #include <DallasTemperature.h>
 #include <WiFi.h> // Include the WiFi library
 
-unsigned long myChannelNumber = 2591283;
-const char *myWriteAPIKey = "84QHA0LT3CZ25OK3";
-const char *ssid = "agrotech"; // WiFi SSID name
-const char *password = "1Afuna2gezer"; // WiFi password
+unsigned long myChannelNumber = xxxxxx;
+const char *myWriteAPIKey = "xxxxxxxxxxx";
+const char *ssid = "xxxxxxxxxxxx"; // WiFi SSID name
+const char *password = "xxxxxxxx"; // WiFi password
 
 
 // Motor control pins
