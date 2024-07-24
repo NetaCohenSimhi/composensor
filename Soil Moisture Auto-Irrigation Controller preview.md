@@ -52,29 +52,31 @@ void setup() {
 ## Loop Function
 ```cpp
 void loop() {
-  int sensorValue = analogRead(SOIL_SENSOR_PIN);  // Read the current soil moisture value from the sensor.
+  int sensorValue = analogRead(SOIL_SENSOR_PIN); // Read the current soil moisture value from the sensor.
   
-  // Map the sensor value to a moisture percentage.
-  int moisturePercent = map(sensorValue, dryValue, wetValue, 0, 100);
+  // Map the sensor value to a percentage
+ int moisturePercent = map(sensorValue, dryValue, wetValue, 0, 100);
   
-  // Ensure the percentage is within 0-100%.
+  // Ensure the percentage is within 0-100%
   moisturePercent = constrain(moisturePercent, 0, 100);
   
-  // Print the moisture percentage to the serial monitor.
+  // Print the moisture percentage
   Serial.print("Soil Moisture: ");
   Serial.print(moisturePercent);
   Serial.println("%");
 
   // Control the relay based on soil moisture
   if (moisturePercent < threshold) {
-    digitalWrite(RELAY_PIN, HIGH);  // Turn the relay on (this typically means the relay will open the connected circuit).
+    digitalWrite(RELAY_PIN, LOW);  // Turn the relay on (open)
     Serial.println("Relay ON");
+    delay(2000);
   } else {
-    digitalWrite(RELAY_PIN, LOW);  // Turn the relay off (this typically means the relay will close the connected circuit).
+    digitalWrite(RELAY_PIN, HIGH);  // Turn the relay off (close)
     Serial.println("Relay OFF");
+    delay(2000);
   }
 
-  delay(1000);  // Wait for 1 second before taking another reading.
+  delay(1000);  // Wait for a second before taking another reading
 }
 ```
 
