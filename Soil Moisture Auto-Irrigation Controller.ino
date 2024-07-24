@@ -1,9 +1,11 @@
 /*
 Class: Agrotech Lab
 Date: 24-07-2024
-This code is designed to read soil moisture levels using a sensor and control a relay 
-based on the moisture level. The relay can be used to control irrigation systems, 
-turning them on when the soil is too dry and off when the soil has sufficient moisture.
+This code monitors soil moisture levels and uploads the data
+to ThingSpeak for remote tracking.
+It includes a relay module to control an irrigation system,
+activating it when soil moisture drops below a specified threshold.
+Ideal for automated irrigation in agricultural applications and smart gardening
 */
 
 #include <Arduino.h>
