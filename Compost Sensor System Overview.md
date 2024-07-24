@@ -5,7 +5,7 @@ Temperature readings guide us in determining the phase of composting:
 - Phase 3: Above 70°C
 
 **Code info:** The [WiFi-Connected Temperature Sensor](https://github.com/NetaCohenSimhi/composensor/blob/main/WiFi-Connected%20Temperature%20Sensor%20.ino) code reads temperature data from a DS18B20 sensor and sends the data to ThingSpeak for remote monitoring.
-[full code to copy](https://github.com/NetaCohenSimhi/composensor/blob/main/WiFi-Connected%20Temperature%20Sensor%20.ino) )
+[full code to copy](https://github.com/NetaCohenSimhi/composensor/blob/main/WiFi-Connected%20Temperature%20Sensor%20.ino)
 
 ![Alt Text](https://y.yarn.co/31282a9d-bf87-426e-8195-ed8bf8611823_text.gif)
 
